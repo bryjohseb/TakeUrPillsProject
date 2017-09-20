@@ -28,8 +28,8 @@ public class AboutActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.drawable.pill_logo);
-        LlenarListaObjetos();
-        LlenarListView();
+        //LlenarListaObjetos();
+        //LlenarListView();
     }
 
     //Metodos para iconos en action Bar, los siguientes dos
