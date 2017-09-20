@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:orientation="vertical"
+    tools:context="com.una.takeurpills.TutorialStep1Activity"
+    android:weightSum="1">
+
+    <include
+        layout="@layout/branding"
+        android:layout_width="332dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="@dimen/margintop_branding" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.41"
+        android:background="@drawable/addmed"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/paddingBottom_steps_textSection"
+        android:paddingTop="@dimen/paddingTop_steps_textSection"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/tv_steps_paso1_header"
+            android:textColor="@color/tv_steps"
+            android:textSize="@dimen/tv_steps_header_textSize"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_steps_content"
+            android:text="@string/tv_steps_paso1_content"
+            android:textAlignment="center"
+            android:textColor="@color/tv_steps"
+            android:textSize="@dimen/tv_steps_content_textSize" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btNextStep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bt_steps_nextStep"
+        android:textSize="@dimen/bt_steps_nextStep_textSize"
+        android:textColor="@android:color/white"
+        android:padding="@dimen/padding_steps_nextStep"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/marginTop_steps_nextStep"
+        android:background="@color/bt_steps_nextStep"/>
+
+    <TextView
+        android:id="@+id/tvStepsSaltar"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/marginTop_steps_saltar"
+        android:layout_weight="0.40"
+        android:text="@string/tv_steps_saltar"
+        android:textColor="@color/tv_steps_saltar"
+        android:textSize="@dimen/textSize_steps_saltar" />
+
+</LinearLayout>

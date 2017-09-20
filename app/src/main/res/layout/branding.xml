@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/image_logo_homepage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margintop_branding"
+        android:src="@drawable/pill_logo" />
+
+
+    <TextView
+        android:id="@+id/text_header_homepage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margintop_header_homepage"
+        android:text="@string/header_homepage"
+        android:textColor="@color/color_header_homepage"
+        android:textSize="@dimen/texSize_header_homepage"
+        app:layout_constraintLeft_toRightOf="@+id/image_logo_homepage"
+        app:layout_constraintTop_toTopOf="@+id/image_logo_homepage" />
+
+    <TextView
+        android:id="@+id/text_slogan_homepage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/marginleft_slogan_homepage"
+        android:text="@string/slogan_homepage"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/texSize_slogan_homepage"
+        app:layout_constraintLeft_toRightOf="@+id/image_logo_homepage"
+        app:layout_constraintTop_toBottomOf="@+id/text_header_homepage" />
+
+
+</android.support.constraint.ConstraintLayout>

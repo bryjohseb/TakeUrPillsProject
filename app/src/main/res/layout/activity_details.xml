@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_details"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_activity"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.una.takeurpills.DetailsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="UselessParent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/tv_detailsPill_nombreTratamiento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/tv_detailsPill_Title"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="32sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_detailsPill_dosis"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_detailsPill_dosis"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/rg_addPill_unidadMedida_title" />
+
+            <TextView
+                android:id="@+id/tv_detailsPill_dosis2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="1 unidad"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/rg_addPill_unidadMedida_title"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_detailsPill_frecuencia"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_detailsPill_frecuencia"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/rg_addPill_unidadMedida_title" />
+
+            <TextView
+                android:id="@+id/tv_detailsPill_frecuencia2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Todos los días"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/rg_addPill_unidadMedida_title"
+                tools:ignore="HardcodedText,InefficientWeight" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_detailsPill_repeticion"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_detailsPill_repeticion"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/rg_addPill_unidadMedida_title" />
+
+            <TextView
+                android:id="@+id/tv_detailsPill_repeticion2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="2 veces al día"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/rg_addPill_unidadMedida_title"
+                tools:ignore="HardcodedText,InefficientWeight" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_detailsPill_horas"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_detailsPill_horas"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/rg_addPill_unidadMedida_title" />
+
+            <TextView
+                android:id="@+id/tv_detailsPill_horas2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="8:00 am./ 8:00 pm."
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/rg_addPill_unidadMedida_title"
+                tools:ignore="HardcodedText,InefficientWeight" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_detailsPill_cantidadRestante"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_detailsPill_cantidadRestante"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/rg_addPill_unidadMedida_title" />
+
+            <TextView
+                android:id="@+id/tv_detailsPill_cantidadRestante2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="15 unidades"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/rg_addPill_unidadMedida_title"
+                tools:ignore="HardcodedText,InefficientWeight" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_detailsPill_reminder"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_detailsPill_reminder"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/rg_addPill_unidadMedida_title" />
+
+            <TextView
+                android:id="@+id/tv_detailsPill_reminder2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="4 unidades"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/rg_addPill_unidadMedida_title"
+                tools:ignore="HardcodedText,InefficientWeight" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/bt_detailsPill_edit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/bt_save"
+                android:text="@string/bt_detailsPill_edit"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                tools:ignore="ButtonStyle" />
+
+            <Button
+                android:id="@+id/bt_detailsPill_delete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/bt_cancel"
+                android:text="@string/bt_detailsPill_delete"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                tools:ignore="ButtonStyle" />
+        </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:src="@android:drawable/ic_input_add"
+            app:fabSize="mini"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginStart="32dp" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
+
+
+

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:orientation="vertical"
+    tools:context="com.una.takeurpills.TutorialStep4Activity">
+
+    <include layout="@layout/branding"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/margintop_branding"
+        android:layout_marginBottom="16dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/impr"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/paddingBottom_steps_textSection"
+        android:paddingTop="@dimen/paddingTop_steps_textSection">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/tv_steps_paso4_header"
+            android:textColor="@color/bc_text_steps"
+            android:textSize="@dimen/tv_steps_header_textSize"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_steps_content"
+            android:text="@string/tv_steps_paso4_content"
+            android:textAlignment="center"
+            android:textColor="@color/bc_text_steps"
+            android:textSize="@dimen/tv_steps_content_textSize" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btNextStep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bt_steps_addPills"
+        android:textSize="@dimen/bt_steps_nextStep_textSize"
+        android:textColor="@android:color/white"
+        android:padding="@dimen/padding_steps_nextStep"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/marginTop_steps_nextStep"
+        android:background="@color/bt_steps_nextStep"/>
+
+</LinearLayout>

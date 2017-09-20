@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3d629b</color>
+    <color name="colorPrimaryDark">#b2b4bd</color>
+    <color name="colorAccent">#ec5f90</color>
+    <color name="color_header_homepage">#3d629b</color>
+    <color name="bgColor_listPills">#58b353</color>
+    <color name="bgColor_addPills">#1e90ff</color>
+    <color name="bgColor_findPills">#d9f152</color>
+    <color name="background_activity">#e7f5fe</color>
+    <color name="bt_save">#58b353</color>
+    <color name="bt_cancel">#e51e36</color>
+    <color name="bc_text_steps">#ffffff</color>
+    <color name="tv_steps">#060606</color>
+    <color name="bt_steps_nextStep">#2196f3</color>
+    <color name="tv_steps_saltar">#f8576b</color>
+
+</resources>

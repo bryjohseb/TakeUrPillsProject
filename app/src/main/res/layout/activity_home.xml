@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.una.takeurpills.HomeActivity">
+
+    <include
+        layout="@layout/branding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/margintop_branding"
+        android:layout_marginTop="@dimen/margintop_branding" />
+
+    <Button
+        android:id="@+id/btListPills"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/bgColor_listPills"
+        android:text="@string/text_listPills"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/textSize_homeButtons"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btAddPills"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/bgColor_addPills"
+        android:text="@string/text_addPills"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/textSize_homeButtons"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btFindPills"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/colorAccent"
+        android:text="@string/text_findPills"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/textSize_homeButtons"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btAbout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="?android:attr/colorPressedHighlight"
+        android:text="@string/bt_home_about"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/textSize_homeButtons"
+        android:textStyle="bold" />
+
+</LinearLayout>

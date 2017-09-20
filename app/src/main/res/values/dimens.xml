@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="texSize_header_homepage">48sp</dimen>
+    <dimen name="margintop_header_homepage">16dp</dimen>
+    <dimen name="texSize_slogan_homepage">16sp</dimen>
+    <dimen name="marginleft_slogan_homepage">30dp</dimen>
+    <dimen name="margintop_branding">35dp</dimen>
+    <dimen name="textSize_homeButtons">32sp</dimen>
+    <dimen name="marginbottom_homeButton">10dp</dimen>
+    <dimen name="rg_addPill_unidadMedida_title">12sp</dimen>
+    <dimen name="paddingTop_steps_textSection">16dp</dimen>
+    <dimen name="paddingBottom_steps_textSection">40dp</dimen>
+    <dimen name="tv_steps_header_textSize">56sp</dimen>
+    <dimen name="tv_steps_content_textSize">32sp</dimen>
+    <dimen name="padding_steps_content">16dp</dimen>
+    <dimen name="bt_steps_nextStep_textSize">32sp</dimen>
+    <dimen name="padding_steps_nextStep">24dp</dimen>
+    <dimen name="marginTop_steps_nextStep">-40dp</dimen>
+    <dimen name="textSize_steps_saltar">16sp</dimen>
+    <dimen name="marginTop_steps_saltar">32dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="padding_map_tv_placeInfo">8dp</dimen>
+</resources>

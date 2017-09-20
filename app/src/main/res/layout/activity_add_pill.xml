@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/background_activity"
+        tools:context="com.una.takeurpills.AddPillActivity">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="32sp"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:text="@string/tv_addPill_header"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:id="@+id/tv_addPill_title" />
+
+        <EditText
+            android:id="@+id/et_addPill_titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/et_addPill_titulo_hint"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/et_addPill_dosis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/et_addPill_dosis_hint" />
+
+        <Spinner
+            android:id="@+id/VecesDiarias"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="@string/rg_addPill_unidadMedida_title"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/rg_addPill_unidadMedida_title" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/mililitros"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/rb_addPill_unidadMedidad_mililitros" />
+
+            <RadioButton
+                android:id="@+id/unidades"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/rb_addPill_unidadMedidad_unidades" />
+        </RadioGroup>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/rg_addPill_frecuencia_title"
+            android:textSize="@dimen/rg_addPill_unidadMedida_title"
+            android:textColor="@android:color/black"
+            android:enabled="false"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/lunes"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="@string/dias_lunes" />
+
+            <CheckBox
+                android:id="@+id/martes"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="@string/dias_martes" />
+
+            <CheckBox
+                android:id="@+id/miercoles"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="@string/dias_miercoles" />
+
+            <CheckBox
+                android:id="@+id/jueves"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="@string/dias_jueves" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+
+            <CheckBox
+                android:id="@+id/viernes"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="@string/dias_viernes" />
+
+            <CheckBox
+                android:id="@+id/sabado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dias_sabado" />
+
+            <CheckBox
+                android:id="@+id/domingo"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="@string/dias_domingo" />
+
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/rg_addPill_horas_title"
+            android:textSize="@dimen/rg_addPill_unidadMedida_title"
+            android:textColor="@android:color/black"
+            android:enabled="false"/>
+
+        <LinearLayout
+            android:id="@+id/horas_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"></LinearLayout>
+
+        <EditText
+            android:id="@+id/et_addPill_cantidadRestante"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/et_addPill_cantidadRestante_hint" />
+        <EditText
+            android:id="@+id/et_addPill_reminder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_marginBottom="16dp"
+            android:hint="@string/et_addPill_reminder_hint" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btAddPillsSave"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@color/bt_save"
+                android:textColor="@android:color/white"
+                android:text="@string/bt_save"/>
+            <Button
+                android:id="@+id/btAddPillsCancelar"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@color/bt_cancel"
+                android:textColor="@android:color/white"
+                android:text="@string/bt_cancel"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

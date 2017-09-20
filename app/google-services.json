@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "27890498922",
+    "firebase_url": "https://takeurpills-d1ef1.firebaseio.com",
+    "project_id": "takeurpills-d1ef1",
+    "storage_bucket": "takeurpills-d1ef1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:27890498922:android:e83a257321d018ca",
+        "android_client_info": {
+          "package_name": "com.una.takeurpills"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "27890498922-20bj8f7ke7d3cum93dqgg3qh5nf1bpd0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.una.takeurpills",
+            "certificate_hash": "907cc33924107aa173d8ae2e472296336c8e51c8"
+          }
+        },
+        {
+          "client_id": "27890498922-2t92feu306lo5o0jtca725jsl3jsg466.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdA5QNAKraXq3buO0KQcl0TyODtESFZv8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "27890498922-2t92feu306lo5o0jtca725jsl3jsg466.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

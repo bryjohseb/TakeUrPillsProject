@@ -1,0 +1,111 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.una.takeurpills.FindPillsActivity">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:context="com.una.takeurpills.FindPillsActivity" />
+
+        <LinearLayout
+            android:id="@+id/layout_map_location_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#e6e6e6"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:background="@color/bgColor_addPills"
+                android:textColor="@android:color/white"
+                android:textAlignment="center"
+                android:paddingTop="@dimen/padding_map_tv_placeInfo"
+                android:paddingBottom="@dimen/padding_map_tv_placeInfo"
+                android:text="@string/map_details_header"/>
+
+            <TextView
+                android:id="@+id/tv_maps_location_name"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:textColor="@android:color/black"
+                android:paddingTop="@dimen/padding_map_tv_placeInfo"
+                android:paddingLeft="@dimen/padding_map_tv_placeInfo"
+                android:paddingRight="@dimen/padding_map_tv_placeInfo"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_maps_location_address"
+                android:textColor="@android:color/black"
+                android:paddingTop="@dimen/padding_map_tv_placeInfo"
+                android:paddingLeft="@dimen/padding_map_tv_placeInfo"
+                android:paddingRight="@dimen/padding_map_tv_placeInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_maps_location_phone"
+                android:textColor="@android:color/black"
+                android:paddingTop="@dimen/padding_map_tv_placeInfo"
+                android:paddingLeft="@dimen/padding_map_tv_placeInfo"
+                android:paddingRight="@dimen/padding_map_tv_placeInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="phone" />
+
+            <TextView
+                android:id="@+id/tv_maps_sitioWeb"
+                android:textColor="@android:color/black"
+                android:paddingTop="@dimen/padding_map_tv_placeInfo"
+                android:paddingLeft="@dimen/padding_map_tv_placeInfo"
+                android:paddingRight="@dimen/padding_map_tv_placeInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="web" />
+
+            <TextView
+                android:id="@+id/tv_maps_rating"
+                android:textColor="@android:color/black"
+                android:paddingTop="@dimen/padding_map_tv_placeInfo"
+                android:paddingLeft="@dimen/padding_map_tv_placeInfo"
+                android:paddingRight="@dimen/padding_map_tv_placeInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_maps_price_Level"
+                android:textColor="@android:color/black"
+                android:padding="@dimen/padding_map_tv_placeInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|start"
+        android:layout_margin="16dp"
+        android:src="@android:drawable/stat_notify_sync"
+        app:fabSize="mini"/>
+
+</android.support.design.widget.CoordinatorLayout>
