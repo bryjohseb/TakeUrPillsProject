@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -31,6 +32,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,9 +42,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -74,10 +79,17 @@ public class LoginActivity extends ParentClass implements LoaderCallbacks<Cursor
     private View mProgressView;
     private View mLoginFormView;
 
+    private DatabaseReference dbRef;
+    private User                user;
+    private Map<String,Object> postUser;
+
     //FireBase
     //private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseUser currentUser;
     private String TAG = "";
+    private FirebaseDatabase db;
+    private DatabaseReference myReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +119,9 @@ public class LoginActivity extends ParentClass implements LoaderCallbacks<Cursor
         mProgressView = findViewById(R.id.login_progress);
 
         mAuth = FirebaseAuth.getInstance();
+
+        db = FirebaseDatabase.getInstance();
+        dbRef = db.getReference("Users");
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -183,12 +198,31 @@ public class LoginActivity extends ParentClass implements LoaderCallbacks<Cursor
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
+
+    public void uploadUser(){
+        String userid = currentUser.getUid();
+        settingUserData(userid);
+        postUser = user.toMap();
+        dbRef.child(userid).setValue(postUser);
+    }
+
+    public void settingUserData(String userid){
+        String email = currentUser.getEmail();
+        String userName = "";
+        String firstName = "";
+        String lastName = "";
+        user = new User(userid,userName,firstName,lastName,email);
+    }
+
+
     public void createNewAccount(String email,String password){
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            currentUser = task.getResult().getUser();
+                            uploadUser();
                             showProgress(false);
                             Log.d(TAG, "createUserWithEmail:success");
                             Intent intento = new Intent(getApplicationContext(), TutorialStep1Activity.class);

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="home_user_name">Nombre</string>
+    <string name="home_user_id">ID Usuario</string>
     <string name="app_name">TakeUrPills</string>
     <string name="header_homepage">TakeUrPill</string>
     <string name="slogan_homepage">No olvides tus pastillas!</string>

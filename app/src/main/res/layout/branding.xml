@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
@@ -33,6 +34,17 @@
         android:textSize="@dimen/texSize_slogan_homepage"
         app:layout_constraintLeft_toRightOf="@+id/image_logo_homepage"
         app:layout_constraintTop_toBottomOf="@+id/text_header_homepage" />
+
+    <TextView
+        android:id="@+id/usernameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="@android:color/holo_blue_light"
+        app:layout_constraintLeft_toRightOf="@+id/image_logo_homepage"
+        app:layout_constraintTop_toBottomOf="@+id/text_header_homepage"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="26dp" />
 
 
 </android.support.constraint.ConstraintLayout>

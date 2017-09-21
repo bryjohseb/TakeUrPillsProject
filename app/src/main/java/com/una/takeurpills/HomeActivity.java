@@ -6,9 +6,30 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.w3c.dom.Text;
+
+import static android.R.attr.id;
 
 public class HomeActivity extends ParentClass {
+    private FirebaseUser fUser;
+    private DatabaseReference mDatabase;
+    private User user;
+    private ValueEventListener mUserListener;
 
+    private String userName;
+    private String lastName;
+    private String userID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,17 +69,45 @@ public class HomeActivity extends ParentClass {
             }// fin onClick
         });
     }// fin OnClickButton
-/*
+
+    public boolean isActiveUser(){
+        fUser = FirebaseAuth.getInstance().getCurrentUser();
+        return (fUser != null);
+    }
+
+    public void setField(){
+        userName = user.firstname;
+        lastName = user.lastname;
+        userID = user.username;
+        TextView text = (TextView)findViewById(R.id.usernameText);
+        text.setText(getResources().getString(R.string.home_user_name) + ": " + userName + " " + lastName + " " + "\n"
+                + getResources().getString(R.string.home_user_id) + ": " + userID);
+    }
+
+    public void retrieveUserInfo(){
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(fUser.getUid());
+        mUserListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                user = dataSnapshot.getValue(User.class);
+                setField();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        mDatabase.addValueEventListener(mUserListener);
+    }
+
     @Override
     public void onStart() {
         super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser == null ){
-            Intent intento = new Intent(getApplicationContext(), LoginActivity.class);
-            startActivity(intento);
+        if(isActiveUser()){
+            retrieveUserInfo();
         }
     }
-*/
 
     @Override
     public void onBackPressed() {
