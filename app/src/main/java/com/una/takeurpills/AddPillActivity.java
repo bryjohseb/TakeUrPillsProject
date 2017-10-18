@@ -69,7 +69,8 @@ public class AddPillActivity extends ParentClass implements
     ArrayList<String> horas = new ArrayList<String>();
     ArrayList<String> horasEditar = new ArrayList<String>();
     int i;
-
+    int comparisonHour = 0;
+    int comparisonMinute = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -192,10 +193,10 @@ public class AddPillActivity extends ParentClass implements
             sunday = true;
         }
         try {
-            if(persistence == false){
+            /*if(persistence == false){
                 FirebaseDatabase.getInstance().setPersistenceEnabled(true);
                 persistence = true;
-            }
+            }*/
             database = FirebaseDatabase.getInstance();
             myRef = database.getReference("Treatments");
             FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -232,10 +233,10 @@ public class AddPillActivity extends ParentClass implements
 
     public void Edit(Treatment treatment){
         try {
-            if(persistence == false){
+            /*if(persistence == false){
                 FirebaseDatabase.getInstance().setPersistenceEnabled(true);
                 persistence = true;
-            }
+            }*/
             database = FirebaseDatabase.getInstance();
             myRef = database.getReference("Treatments");
             FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -400,26 +401,45 @@ public class AddPillActivity extends ParentClass implements
                                           int minute) {
                         button.setText(hourOfDay + ":" + minute);
                         try {
+                            if(comparisonHour == hourOfDay && comparisonMinute == minute) {
+                                return;
+                            }
+                            comparisonHour = hourOfDay;
+                            comparisonMinute = minute;
 
+                            c.setTimeInMillis(System.currentTimeMillis());
+                            int day1 = c.get(Calendar.DAY_OF_YEAR);
                             c.set(Calendar.HOUR_OF_DAY, hourOfDay);
                             c.set(Calendar.MINUTE, minute);
                             c.set(Calendar.SECOND, 0);
+                            c.set(Calendar.MILLISECOND, 0);
+
+
+                            if(c.before(Calendar.getInstance())) {
+                                c.set(Calendar.DATE, 1);
+                                c.set(Calendar.DAY_OF_YEAR,1);
+                            }
+                            day1 = c.get(Calendar.DAY_OF_YEAR);
+                            long _alarmtrigger = (c.before(Calendar.getInstance()))
+                                    ? c.getTimeInMillis() + (AlarmManager.INTERVAL_DAY+1)
+                                    : c.getTimeInMillis();
                             /*String text = button.getText().toString();
                             if (jobject == null) jobject = new JSONObject();
                             jobject.put("hora" + String.valueOf(i), text);*/
                             //horas.add(text);
                             Intent intent = new Intent(getApplicationContext(), AlarmReceiver.class);
                             final int _id = (int) System.currentTimeMillis();
+                            final int _idIntent = (int) _alarmtrigger;
                             EditText tituloPastilla = (EditText) findViewById(R.id.et_addPill_titulo);
                             String tituloPastilla1 = tituloPastilla.getText().toString();
                             intent.putExtra("treatment", _id);
                             intent.putExtra("title", tituloPastilla1);
 
                             PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),
-                                    _id, intent, PendingIntent.FLAG_ONE_SHOT);
+                                    _idIntent, intent, PendingIntent.FLAG_UPDATE_CURRENT);
                             AlarmManager am =
                                     (AlarmManager) getSystemService(Activity.ALARM_SERVICE);
-                            am.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(),
+                            am.setRepeating(AlarmManager.RTC_WAKEUP,_alarmtrigger,AlarmManager.INTERVAL_DAY,
                                     pendingIntent);
                         }catch (Exception exc) {
                             Log.e("Exception", "Unable to create JSONArray: " + exc.toString());

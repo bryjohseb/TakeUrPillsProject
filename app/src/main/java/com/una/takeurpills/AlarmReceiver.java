@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,6 +26,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 
 import static com.una.takeurpills.ParentClass.testjarray;
+import static com.una.takeurpills.R.id.textView4;
 
 /**
  * Created by Esteban on 4/30/2017.
@@ -81,6 +83,8 @@ public class AlarmReceiver extends Activity {
             }
         });
 
+        TextView texto = (TextView) findViewById(R.id.textView4);
+        texto.setText(texto.getText().toString() + "\n" + title);
 
         playSound(this, getAlarmUri());
     }

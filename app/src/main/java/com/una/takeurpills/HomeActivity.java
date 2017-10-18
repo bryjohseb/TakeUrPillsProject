@@ -71,6 +71,10 @@ public class HomeActivity extends ParentClass {
     }// fin OnClickButton
 
     public boolean isActiveUser(){
+        /*if(persistence == false){
+            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+            persistence = true;
+        }*/
         fUser = FirebaseAuth.getInstance().getCurrentUser();
         return (fUser != null);
     }
