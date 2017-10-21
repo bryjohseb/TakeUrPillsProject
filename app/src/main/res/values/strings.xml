@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">TakeUrPills</string>
+    <string name="new_account">Crear una Cuenta</string>
     <string name="header_homepage">TakeUrPill</string>
     <string name="slogan_homepage">No olvides tus pastillas!</string>
     <string name="text_listPills">Lista</string>

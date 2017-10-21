@@ -153,6 +153,23 @@ public class LoginActivity extends ParentClass implements LoaderCallbacks<Cursor
                 attemptRegister();
             }
         });
+
+        Button createAccount = (Button) findViewById(R.id.newUser);
+        createAccount.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Button registration = (Button) findViewById(R.id.buttonregistration);
+                registration.setVisibility(View.VISIBLE);
+
+                TextView nameField = (TextView) findViewById(R.id.name_Field);
+                TextView firstnameField = (TextView) findViewById(R.id.lastName_Field);
+                TextView usernameField = (TextView) findViewById(R.id.username_Field);
+
+                nameField.setVisibility(View.VISIBLE);
+                firstnameField.setVisibility(View.VISIBLE);
+                usernameField.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     public void MensajeOK(String msg){
@@ -208,9 +225,13 @@ public class LoginActivity extends ParentClass implements LoaderCallbacks<Cursor
 
     public void settingUserData(String userid){
         String email = currentUser.getEmail();
-        String userName = "";
-        String firstName = "";
-        String lastName = "";
+        TextView nameField = (TextView) findViewById(R.id.name_Field);
+        TextView lastnameField = (TextView) findViewById(R.id.lastName_Field);
+        TextView usernameField = (TextView) findViewById(R.id.username_Field);
+
+        String userName = usernameField.getText().toString();
+        String firstName = nameField.getText().toString();
+        String lastName = lastnameField.getText().toString();
         user = new User(userid,userName,firstName,lastName,email);
     }
 

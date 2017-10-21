@@ -1,12 +1,13 @@
 package com.una.takeurpills;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by BryJohSeb on 5/26/2017.
  */
 
-public class Treatment {
+public class Treatment implements Serializable {
     private String titulo;
     private int dosis;
     private int cantidadRestante;

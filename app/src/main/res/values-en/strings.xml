@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="home_user_name">Name</string>
+    <string name="home_user_lastname">LastName</string>
+    <string name="home_user_username">UserName</string>
+    <string name="new_account">Create an Account</string>
     <string name="home_user_id">UserID</string>
     <string name="app_name">TakeUrPills</string>
     <string name="header_homepage">TakeUrPill</string>

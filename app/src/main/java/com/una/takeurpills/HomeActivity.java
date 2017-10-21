@@ -38,6 +38,7 @@ public class HomeActivity extends ParentClass {
         OnClickButton(R.id.btAddPills);
         OnClickButton(R.id.btFindPills);
         OnClickButton(R.id.btAbout);
+        OnClickButton(R.id.home_logout_button);
     }// fin onCreate
     public void OnClickButton(int ref){
         View view = findViewById(ref);
@@ -64,6 +65,11 @@ public class HomeActivity extends ParentClass {
                         Intent intento4 = new Intent(getApplicationContext(), AboutActivity.class);
                         startActivity(intento4);
                         break;
+                    case R.id.home_logout_button:
+                        mAuth.signOut();
+                        finish();
+                        intento = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(intento);
                     default: break;
                 }// fin switch
             }// fin onClick

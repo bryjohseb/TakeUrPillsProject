@@ -26,7 +26,9 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
@@ -44,19 +46,23 @@ import static com.una.takeurpills.R.layout.dialog;
 
 public class ListPillsActivity extends ParentClass {
     //private JSONArray testjarray;
+    private FirebaseUser fUser;
+    private DatabaseReference mDatabase;
+    private Treatment treatment;
+    private ValueEventListener mUserListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_pills);
-        FillListView();
-        OnClickListItems();
+        //FillListView();
         //datosFirebase();
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.drawable.pill_logo);
         getSupportActionBar().setTitle(R.string.ab_list_pill_header);
-
+        fUser = mAuth.getCurrentUser();
+        retrieveInfo();
 
     } // Fin del Oncreate de la Actividad 01
 
@@ -95,6 +101,32 @@ public class ListPillsActivity extends ParentClass {
         return true;
     }
 
+    public void retrieveInfo(){
+        if (mAuth.getCurrentUser() == null) {
+            return;
+        }
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Treatments").child(fUser.getUid());
+        final ArrayList<String> result = new ArrayList<String>();
+        mUserListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                    String datos = data.toString();
+                    String datos1 = data.getValue().toString();
+                    treatment = data.getValue(Treatment.class);
+                    result.add(treatment.getTitulo());
+                }
+                FillListView(result);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        mDatabase.addValueEventListener(mUserListener);
+    }
+
     /*
         @Override
         public void onStart() {
@@ -112,14 +144,16 @@ public class ListPillsActivity extends ParentClass {
         startActivity(intento);
     }
     //Aca se pueden cargar los tratamientos desde el Json  del app, pero solo los nombres (posible a cambios)
-    private void FillListView() {
+    private void FillListView(ArrayList<String> variable) {
         String[] test = null;
-        try {
+        /*try {
             testjarray = readFromFile();
             test = getNames(testjarray);
         } catch (JSONException exc) {
 
-        }
+        }*/
+        String lala = variable.toString().substring(1, variable.toString().length() - 1);
+        test = lala.split(", ");
 
         String[] pills = {
                 "Acetaminofen",
@@ -146,6 +180,7 @@ public class ListPillsActivity extends ParentClass {
                 android.R.layout.simple_list_item_1, (test));
         ListView milistview = (ListView) findViewById(R.id.listPills);
         milistview.setAdapter(adaptador);
+        OnClickListItems();
     }
     public void datosFirebase(){
         database = FirebaseDatabase.getInstance();
@@ -206,32 +241,12 @@ public class ListPillsActivity extends ParentClass {
             @Override
             public void onItemClick(AdapterView<?> paret, View viewClicked,
                                     int position, long id) {
-                //JSONObject objjson = testjarray.optJSONObject(position);
-                Intent intento = new Intent(getApplicationContext(), DetailsActivity.class);
-                intento.putExtra("posicion", position);
-                    /*intento.putExtra("titulo", String.valueOf(objjson.get("titulo")));
-                    intento.putExtra("dosis", Integer.parseInt(String.valueOf(objjson.get("dosis"))));
-                    intento.putExtra("Unidad",String.valueOf(objjson.get("Unidad")));
-                    intento.putExtra("cantidadRestante", Integer.parseInt(String.valueOf(objjson.get("cantidadRestante"))));
-                    intento.putExtra("Reminder", Integer.parseInt(String.valueOf(objjson.get("Reminder"))));
-                    if (objjson.has("Dia_1"))
-                        intento.putExtra("Dia_1", String.valueOf(objjson.get("Dia_1")));
-                    if (objjson.has("Dia_2"))
-                        intento.putExtra("Dia_2", String.valueOf(objjson.get("Dia_2")));
-                    if (objjson.has("Dia_3"))
-                        intento.putExtra("Dia_3", String.valueOf(objjson.get("Dia_3")));
-                    if (objjson.has("Dia_4"))
-                        intento.putExtra("Dia_4", String.valueOf(objjson.get("Dia_4")));
-                    if (objjson.has("Dia_5"))
-                        intento.putExtra("Dia_5", String.valueOf(objjson.get("Dia_5")));
-                    if (objjson.has("Dia_6"))
-                        intento.putExtra("Dia_6", String.valueOf(objjson.get("Dia_6")));
-                    if (objjson.has("Dia_7"))
-                        intento.putExtra("Dia_7", String.valueOf(objjson.get("Dia_7")));*/
-                startActivity(intento);
+
                 TextView textView = (TextView) viewClicked;
-                //String message = "Tratamiento # " + (1 + position) + ", corresponde a: " + textView.getText().toString();
-                //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                String letssee = textView.getText().toString();
+                Intent intento = new Intent(getApplicationContext(), DetailsActivity.class);
+                intento.putExtra("name", letssee);
+                startActivity(intento);
             }
         });
     }

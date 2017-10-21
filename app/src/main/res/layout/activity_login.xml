@@ -65,6 +65,45 @@
 
             </android.support.design.widget.TextInputLayout>
 
+            <EditText
+                android:id="@+id/name_Field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/home_user_name"
+                android:inputType="textPersonName"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/lastName_Field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/home_user_lastname"
+                android:inputType="textPersonName"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/username_Field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:visibility="invisible" />
+
+            <Button
+                android:id="@+id/buttonregistration"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorAccent"
+                android:backgroundTint="@color/tv_steps_saltar"
+                android:text="@string/action_register"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                tools:text="Register" />
+
             <Button
                 android:id="@+id/email_sign_in_button"
                 style="?android:textAppearanceSmall"
@@ -77,27 +116,21 @@
                 tools:text="Sign In" />
 
             <Button
-                android:id="@+id/buttonregistration"
-                style="?android:textAppearanceSmall"
+                android:id="@+id/newUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/colorAccent"
-                android:backgroundTint="@color/tv_steps_saltar"
-                android:text="@string/action_register"
-                android:textStyle="bold"
-                tools:text="Register" />
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_weight="3.16"
-                app:srcCompat="@drawable/pill_logo" />
+                android:text="@string/new_account" />
 
         </LinearLayout>
     </ScrollView>
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name" />
 
     <ProgressBar
         android:id="@+id/login_progress"

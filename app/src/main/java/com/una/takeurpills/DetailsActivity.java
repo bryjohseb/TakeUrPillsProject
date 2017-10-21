@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
@@ -29,6 +30,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.security.Key;
+import java.util.ArrayList;
 
 import static com.una.takeurpills.R.id.domingo;
 import static com.una.takeurpills.R.id.jueves;
@@ -42,6 +44,11 @@ public class DetailsActivity extends ParentClass {
     private String unidadMedida = "";
     private int posicion = 0;
     private String veces = "";
+    private FirebaseUser fUser;
+    private DatabaseReference mDatabase;
+    private Treatment treatment;
+    private Treatment currentTreatment;
+    private ValueEventListener mUserListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +57,8 @@ public class DetailsActivity extends ParentClass {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.drawable.pill_logo);
         getSupportActionBar().setTitle(R.string.ab_detail_pill_header);
-        getData();
+        fUser = mAuth.getCurrentUser();
+        getArrayData();
         Button cancelar = (Button) findViewById(R.id.bt_detailsPill_delete);
         cancelar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,39 +120,59 @@ public class DetailsActivity extends ParentClass {
         getSupportActionBar().setTitle(msg);
     }
 
-    public void getData() {
+    public void retrieveInfo(final String parameter){
+        if (mAuth.getCurrentUser() == null) {
+            return;
+        }
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Treatments").child(fUser.getUid());
+        final ArrayList<Treatment> result = new ArrayList<Treatment>();
+        mUserListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                    treatment = data.getValue(Treatment.class);
+                    final String title = treatment.getTitulo();
+                    if(title.equals(parameter)) {
+                        result.add(treatment);
+                        currentTreatment = treatment;
+                    }
+                }
+                getData(result);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        mDatabase.addValueEventListener(mUserListener);
+    }
+
+    public void getArrayData(){
         Intent callingIntent = getIntent();
-        posicion = callingIntent.getIntExtra("posicion", 0);
-        JSONObject objjson = testjarray.optJSONObject(posicion);
+        String title = callingIntent.getStringExtra("name");
+        retrieveInfo(title);
+    }
+
+    public void getData(ArrayList<Treatment> result) {
+        //JSONObject objjson = testjarray.optJSONObject(posicion);
+        Treatment current = result.get(0);
         try {
-            String titulo = String.valueOf(objjson.get("titulo"));
-            int dosis = Integer.parseInt(String.valueOf(objjson.get("dosis")));
-            String unidad = String.valueOf(objjson.get("Unidad"));
+            String titulo = current.getTitulo();
+            int dosis = current.getDosis();
+            String unidad = current.getUnidad();
             unidadMedida = unidad;
-            int cantidadRestante = Integer.parseInt(String.valueOf(objjson.get("cantidadRestante")));
-            int reminder = Integer.parseInt(String.valueOf(objjson.get("Reminder")));
-            int vecesDiarias = Integer.parseInt(String.valueOf(objjson.get("vecesDiarias")));
-            String lunes = objjson.has("Dia_1")
-                    ? String.valueOf(objjson.get("Dia_1"))
-                    : "";
-            String martes = objjson.has("Dia_2")
-                    ? String.valueOf(objjson.get("Dia_2"))
-                    : "";
-            String miercoles = objjson.has("Dia_3")
-                    ? String.valueOf(objjson.get("Dia_3"))
-                    : "";
-            String jueves = objjson.has("Dia_4")
-                    ? String.valueOf(objjson.get("Dia_4"))
-                    : "";
-            String viernes = objjson.has("Dia_5")
-                    ? String.valueOf(objjson.get("Dia_5"))
-                    : "";
-            String sabado = objjson.has("Dia_6")
-                    ? String.valueOf(objjson.get("Dia_6"))
-                    : "";
-            String domingo = objjson.has("Dia_7")
-                    ? String.valueOf(objjson.get("Dia_7"))
-                    : "";
+            int cantidadRestante = current.getCantidadRestante();
+            int reminder = current.getReminder();
+            int vecesDiarias = current.getVecesDiarias();
+
+            Boolean lunes = current.isDia1();
+            Boolean martes = current.isDia2();
+            Boolean miercoles = current.isDia3();
+            Boolean jueves = current.isDia4();
+            Boolean viernes = current.isDia5();
+            Boolean sabado = current.isDia6();
+            Boolean domingo = current.isDia7();
 
             TextView Mi_textview = (TextView) findViewById(R.id.tv_detailsPill_nombreTratamiento);
             TextView Mi_textview2 = (TextView) findViewById(R.id.tv_detailsPill_dosis2);
@@ -169,23 +197,16 @@ public class DetailsActivity extends ParentClass {
                     String.valueOf(reminder) + (unidad.equals("Unidades")
                             ? " " + getResources().getString(R.string.unidades_mesage) : " " + getResources().getString(R.string.mililitros_mesage)));
 
-           /* Mi_textview2.setText((dosis == 1) ? String.valueOf(dosis) + (unidad.equals("Unidades")
-                    ? " unidad" : " mililitro") : String.valueOf(dosis) + " " + unidad);
-            Mi_textview3.setText((cantidadRestante == 1) ? String.valueOf(cantidadRestante) + (unidad.equals("Unidades")
-                    ? " unidad" : " mililitro") : String.valueOf(cantidadRestante) + " " + unidad);
-            Mi_textview4.setText((reminder == 1) ? String.valueOf(reminder) + (unidad.equals("Unidades")
-                    ? " unidad" : " mililitro") : String.valueOf(reminder) + " " + unidad);*/
-
             Mi_textview6.setText((vecesDiarias != 1) ? String.valueOf(vecesDiarias) + " " + getResources().getString(R.string.tv_detailsPill_veces_dia)
                     : String.valueOf(vecesDiarias) + " " + getResources().getString(R.string.tv_detailsPill_una_vez_dia_));
             Mi_textview5.setText("");
-            Mi_textview5.append((!lunes.equals("")) ? String.valueOf(getResources().getString(R.string.dias_lunes)) + " / " : String.valueOf("") + "");
-            Mi_textview5.append((!martes.equals("")) ? String.valueOf(getResources().getString(R.string.dias_martes)) + " / " : String.valueOf("") + "");
-            Mi_textview5.append((!miercoles.equals("")) ? String.valueOf(getResources().getString(R.string.dias_miercoles)) + " / " : String.valueOf("") + "");
-            Mi_textview5.append((!jueves.equals("")) ? String.valueOf(getResources().getString(R.string.dias_jueves)) + " / " : String.valueOf("") + "");
-            Mi_textview5.append((!viernes.equals("")) ? String.valueOf(getResources().getString(R.string.dias_viernes)) + " / " : String.valueOf("") + "");
-            Mi_textview5.append((!sabado.equals("")) ? String.valueOf(getResources().getString(R.string.dias_sabado)) + " / " : String.valueOf("") + "");
-            Mi_textview5.append((!domingo.equals("")) ? String.valueOf(getResources().getString(R.string.dias_domingo)) + " ." : String.valueOf("") + "");
+            Mi_textview5.append((lunes) ? String.valueOf(getResources().getString(R.string.dias_lunes)) + " / " : String.valueOf("") + "");
+            Mi_textview5.append((martes) ? String.valueOf(getResources().getString(R.string.dias_martes)) + " / " : String.valueOf("") + "");
+            Mi_textview5.append((miercoles) ? String.valueOf(getResources().getString(R.string.dias_miercoles)) + " / " : String.valueOf("") + "");
+            Mi_textview5.append((jueves) ? String.valueOf(getResources().getString(R.string.dias_jueves)) + " / " : String.valueOf("") + "");
+            Mi_textview5.append((viernes) ? String.valueOf(getResources().getString(R.string.dias_viernes)) + " / " : String.valueOf("") + "");
+            Mi_textview5.append((sabado) ? String.valueOf(getResources().getString(R.string.dias_sabado)) + " / " : String.valueOf("") + "");
+            Mi_textview5.append((domingo) ? String.valueOf(getResources().getString(R.string.dias_domingo)) + " ." : String.valueOf("") + "");
 
 
             //Esto es para quitar el "/" del final
@@ -195,10 +216,10 @@ public class DetailsActivity extends ParentClass {
 
             //Esto es para setear la hora a 12 horas.
             Mi_textview7.setText("");
-            for (int i = 0; i < vecesDiarias; i++) {
-                String horas = String.valueOf(objjson.get("hora" + i));
+            for (int i = 0; i < current.getHoras().size(); i++) {
+                String horas = String.valueOf(current.getHoras().get(i));
                 //String hora = horas.substring(0, 2);
-                String hora = getHours(horas);
+                /*String hora = getHours(horas);
                 //String minutos = horas.substring(2, horas.length());
                 String minutos = getMinutes(horas);
                 int doceHoras = Integer.parseInt(hora);
@@ -247,7 +268,7 @@ public class DetailsActivity extends ParentClass {
                         horas = hora + ":" + minutos + " am";
                     } else
                         horas = hora + ":" + minutos + " am";
-                }
+                }*/
 
                 Mi_textview7.append((!horas.equals("")) ? String.valueOf(horas) + "/" : String.valueOf("") + "");
 
@@ -298,10 +319,10 @@ public class DetailsActivity extends ParentClass {
 
     private void Remove() {
         try {
-            if(persistence == false){
+            /*if(persistence == false){
                 FirebaseDatabase.getInstance().setPersistenceEnabled(true);
                 persistence = true;
-            }
+            }*/
             database = FirebaseDatabase.getInstance();
             FirebaseUser currentUser = mAuth.getCurrentUser();
             String key = "";
@@ -380,7 +401,7 @@ public class DetailsActivity extends ParentClass {
                         //Transicion de datos
                         modo = 1;
                         Intent intento = new Intent(getApplicationContext(), AddPillActivity.class);
-                        intento.putExtra("posicion", posicion);
+                        intento.putExtra("tratamiento", currentTreatment);
                         /*intento.putExtra("edicion", 1);
                         intento.putExtra("titulo", Mi_textview.getText());
                         intento.putExtra("dosis", dosisN);
