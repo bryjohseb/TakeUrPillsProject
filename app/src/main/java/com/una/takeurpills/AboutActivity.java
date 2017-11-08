@@ -28,8 +28,8 @@ public class AboutActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.drawable.pill_logo);
-        //LlenarListaObjetos();
-        //LlenarListView();
+        LlenarListaObjetos();
+        LlenarListView();
     }
 
     //Metodos para iconos en action Bar, los siguientes dos
@@ -74,10 +74,9 @@ public class AboutActivity extends AppCompatActivity {
         misObjetos.add(new ObjetosXDesplegar("Bryan Murillo Rodriguez", "402240326", R.drawable.bryan));
         misObjetos.add(new ObjetosXDesplegar("Katherine Solorzano Quintanilla", "115910112", R.drawable.kathy));
         misObjetos.add(new ObjetosXDesplegar("Paolo Vargas Campos", "112040946", R.drawable.paolo));
-       misObjetos.add(new ObjetosXDesplegar("Diego Vargas Medrano", "115880814", R.drawable.diego));
-
-
+        misObjetos.add(new ObjetosXDesplegar("Diego Vargas Medrano", "115880814", R.drawable.diego));
     }
+
     private void LlenarListView() {
         ArrayAdapter<ObjetosXDesplegar> adapter = new MyListAdapter();
         ListView list = (ListView) findViewById(R.id.listview);
